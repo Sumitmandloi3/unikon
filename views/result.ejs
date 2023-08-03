@@ -1,0 +1,78 @@
+<!-- views/result.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Result</title>
+  <style>
+    /* Add your CSS styles here */
+    body{
+      background-image: url(/images/images.jpeg);
+    }
+    .product-list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .product-item {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+  
+    .product-name {
+      font-weight: bold;
+     
+    }
+    li p{
+      color: blue;
+    }
+    .product-description {
+      margin-top: 5px;
+    }
+  
+    .delete-form {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  
+    .delete-btn {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    span{
+      color: red;
+      font-size: large;
+
+    }
+    li{
+      background-color: rgb(163, 160, 160);
+     
+    }
+    h2{
+      color: #ff0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body align="center">
+  <h1>User Details</h1>
+  <p class="p">Username: <span ><%= user[0].user_name %></span> </p>
+  
+  <h2>Product Descriptions</h2>
+  <ul class="product-list">
+    <% user.forEach(function(product) { %>
+      <li class="product-item">
+        <p class="product-name"><%= product.name_of_item %></p>
+        <p class="product-description"><%= product.description %></p>
+        <form class="delete-form" method="POST" action="/delete-product">
+          <input type="hidden" name="productId" value=<%=product.img%>>
+          <button class="delete-btn" type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
